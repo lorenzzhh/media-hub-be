@@ -35,6 +35,12 @@ public class AppUser {
     private List<Media> mediaList;
 
 
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id")
+    private UserProfile userProfile;
+
+
     public AppUser(String username, String passwordHash, Role role) {
         this.username = username;
         this.passwordHash = passwordHash;

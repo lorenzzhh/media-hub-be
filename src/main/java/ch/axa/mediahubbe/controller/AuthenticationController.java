@@ -57,6 +57,10 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Pflichtfelder nicht ausgefüllt");
         }
 
+        if (authenticationService.findByUsername(dto.username()).isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Account mit diesem Username existiert schon!");
+        }
+
         try {
             UUID token = registrierungsService.starteRegistrierung(dto);
             mailService.sendRegistrationVerification(dto.username(), token);

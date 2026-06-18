@@ -1,10 +1,13 @@
 package ch.axa.mediahubbe.entity;
 
 import ch.axa.mediahubbe.security.Role;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +28,12 @@ public class AppUser {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+
+    @OneToMany(mappedBy = "owner")
+    @JsonIgnoreProperties("AppUser")
+    private List<Media> mediaList;
+
 
     public AppUser(String username, String passwordHash, Role role) {
         this.username = username;

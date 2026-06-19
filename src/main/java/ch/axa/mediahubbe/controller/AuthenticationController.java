@@ -69,7 +69,7 @@ public class AuthenticationController {
             return new ResponseEntity<String>(token.toString(), HttpStatus.CREATED); // 210 Created
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ein unerwarteter Fehler ist aufgetreten."); // 500
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ein unerwarteter Fehler ist aufgetreten (Controller)."); // 500
         }
     }
 

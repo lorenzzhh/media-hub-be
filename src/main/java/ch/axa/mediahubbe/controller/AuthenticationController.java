@@ -33,6 +33,7 @@ public class AuthenticationController {
         this.mailService = mailService;
     }
 
+    @PreAuthorize("isAnonymous()")
     @PostMapping("/login")
     public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
         return authenticationService.login(loginRequestDto);
@@ -50,7 +51,7 @@ public class AuthenticationController {
         return "Dieser Endpunkt ist nur für Teacher.";
     }
 
-
+    @PreAuthorize("isAnonymous()")
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterDto dto) {
         if (dto.username() == null || dto.password() == null || dto.role() == null) {
